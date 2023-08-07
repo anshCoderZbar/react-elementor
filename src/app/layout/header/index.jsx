@@ -1,5 +1,6 @@
+import { Elementor } from "components/Elementor";
 import React from "react";
 
-export const Header = () => {
-  return <div>Header</div>;
+export const Header = ({ setActive }) => {
+  return <Elementor setActive={setActive} />;
 };
