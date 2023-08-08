@@ -1,14 +1,10 @@
+import { TextComponent } from "app/layout/header/TextComponent";
 import { sideBar } from "mock";
 import React from "react";
-import { useDrag } from "react-dnd";
 
 import { RxCross1 } from "react-icons/rx";
 
 export const Elementor = ({ setActive }) => {
-  const [collected, drag, dragPreview] = useDrag(() => ({
-    type,
-    item,
-  }));
   return (
     <div>
       <button
@@ -26,7 +22,7 @@ export const Elementor = ({ setActive }) => {
         className="offcanvas offcanvas-start show w-25"
         data-bs-scroll="true"
         data-bs-backdrop="false"
-        tabindex="-1"
+        tabIndex="-1"
         id="offcanvasScrolling"
         aria-labelledby="offcanvasScrollingLabel"
       >
@@ -46,21 +42,8 @@ export const Elementor = ({ setActive }) => {
         </div>
         <div className="offcanvas-body offcanvas_bg">
           <div className="row">
-            {sideBar?.map((elm) => {
-              return collected?.isDragging ? (
-                <div ref={dragPreview}>{console.log("drag started")}</div>
-              ) : (
-                <div
-                  ref={drag}
-                  {...collected}
-                  key={elm?.id}
-                  className="col-md-6"
-                >
-                  <div className="bg-white my-2 d-flex justify-content-center align-items-center p-5 x_vss">
-                    {elm?.icon}
-                  </div>
-                </div>
-              );
+            {sideBar?.map((elm, index) => {
+              return <TextComponent key={index} elm={elm} index={index} />;
             })}
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "pages/home";
-import { PublicRoutes } from "./public";
+import { Layout } from "app/layout";
 
 export const AllRoutes = () => {
   return (
@@ -10,9 +10,9 @@ export const AllRoutes = () => {
         <Route
           path="/"
           element={
-            <PublicRoutes>
+            <Layout>
               <Home />
-            </PublicRoutes>
+            </Layout>
           }
         />
       </Routes>
