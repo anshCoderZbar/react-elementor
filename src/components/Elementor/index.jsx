@@ -1,10 +1,18 @@
+import { sideBar } from "mock";
 import React from "react";
+import { useDrag } from "react-dnd";
+
+import { RxCross1 } from "react-icons/rx";
 
 export const Elementor = ({ setActive }) => {
+  const [collected, drag, dragPreview] = useDrag(() => ({
+    type,
+    item,
+  }));
   return (
     <div>
       <button
-        class="btn btn-secondary position-absolute top-50"
+        className="btn btn-secondary position-absolute top-50 "
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasScrolling"
@@ -15,29 +23,46 @@ export const Elementor = ({ setActive }) => {
       </button>
 
       <div
-        class="offcanvas offcanvas-start show w-25"
+        className="offcanvas offcanvas-start show w-25"
         data-bs-scroll="true"
         data-bs-backdrop="false"
         tabindex="-1"
         id="offcanvasScrolling"
         aria-labelledby="offcanvasScrollingLabel"
       >
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
+        <div className="offcanvas-header ">
+          <h5 className="offcanvas-title" id="offcanvasScrollingLabel">
             Elementor
           </h5>
           <button
             type="button"
-            class="btn-close"
+            className="btn btn-outline text-white"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
             onClick={() => setActive(false)}
-          ></button>
+          >
+            <RxCross1 />
+          </button>
         </div>
-        <div class="offcanvas-body">
-          <p>
-            Try scrolling the rest of the page to see this option in action.
-          </p>
+        <div className="offcanvas-body offcanvas_bg">
+          <div className="row">
+            {sideBar?.map((elm) => {
+              return collected?.isDragging ? (
+                <div ref={dragPreview}>{console.log("drag started")}</div>
+              ) : (
+                <div
+                  ref={drag}
+                  {...collected}
+                  key={elm?.id}
+                  className="col-md-6"
+                >
+                  <div className="bg-white my-2 d-flex justify-content-center align-items-center p-5 x_vss">
+                    {elm?.icon}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

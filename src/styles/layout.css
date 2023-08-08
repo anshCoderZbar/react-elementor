@@ -1,0 +1,20 @@
+.offcanvas_bg {
+  background-color: #88888826;
+}
+.offcanvas-header {
+  background-color: #92003c;
+  color: white;
+}
+.offcanvas-header button {
+  color: white;
+}
+
+.off_card {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  margin: 10px 0;
+}
+.x_vss {
+  font-size: 40px;
+}
